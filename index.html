@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0A3628">
+  <title>SIMTRA Umroh — Sistem Manajemen Travel Umroh</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230F4D3A'/%3E%3Cpath d='M8 23V14l8-6 8 6v9M12 23v-5h8v5' stroke='%23FECA65' stroke-width='2.2' fill='none' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="topload" id="topload"></div>
+
+  <!-- ================= HALAMAN LOGIN ================= -->
+  <section id="loginView" class="login-wrap hidden">
+    <div class="login-art">
+      <div class="brand"><div class="logo-mark" id="loginLogo"></div><span id="loginBrand">SIMTRA Umroh</span></div>
+      <div>
+        <div class="eyebrow" style="color:var(--gold-soft)">Sistem Manajemen Travel Umroh</div>
+        <h1>Operasional agensi umroh dalam satu pintu.</h1>
+        <p>Data jemaah & dokumen, paket, jadwal keberangkatan, pembayaran & cicilan, hingga laporan keuangan dan payroll — tersimpan aman di Google Workspace Anda.</p>
+        <div class="feat">
+          <div><svg class="ic" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Hak akses berbasis peran, divalidasi di server</div>
+          <div><svg class="ic" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M8 9h8M8 13h8M8 17h5"/></svg>Kwitansi & slip gaji PDF otomatis</div>
+          <div><svg class="ic" viewBox="0 0 24 24"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg>Pengingat cicilan terjadwal via Gmail</div>
+        </div>
+      </div>
+      <div class="small" style="color:#9fbcaf" id="loginFooter">© PT Sirothol Mustaqim Travel</div>
+    </div>
+    <div class="login-form">
+      <form class="login-card" id="loginForm" autocomplete="on">
+        <div class="eyebrow">Masuk ke akun Anda</div>
+        <h2>Assalamu'alaikum</h2>
+        <p class="muted">Gunakan username dan password yang diberikan owner agensi.</p>
+        <div id="loginAlert"></div>
+        <div class="field" style="margin-bottom:14px">
+          <label for="lgUser">Username</label>
+          <input class="input" id="lgUser" name="username" autocomplete="username" required placeholder="contoh: fajri.ops">
+        </div>
+        <div class="field" style="margin-bottom:20px">
+          <label for="lgPass">Password</label>
+          <div style="position:relative">
+            <input class="input" id="lgPass" name="password" type="password" autocomplete="current-password" required placeholder="••••••••" style="padding-right:44px">
+            <button type="button" class="icon-btn" id="lgEye" style="position:absolute;right:2px;top:1px" aria-label="Tampilkan password"><svg class="ic" viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button>
+          </div>
+        </div>
+        <button class="btn primary block" type="submit" id="lgBtn" style="height:44px">Masuk</button>
+        <p class="xs muted" style="margin-top:18px;text-align:center">Akun terkunci 15 menit setelah 5x gagal login. Sesi berakhir otomatis setelah 60 menit tidak aktif.</p>
+        <p class="xs muted" style="text-align:center" id="srvStatus"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ================= APLIKASI ================= -->
+  <section id="appView" class="shell hidden">
+    <aside class="sidebar" id="sidebar">
+      <div class="sb-brand"><div class="logo-mark" id="sbLogo"></div><div><b id="sbBrand">SIMTRA Umroh</b><span>Sistem Manajemen Travel</span></div></div>
+      <nav class="sb-nav" id="sbNav"></nav>
+      <div class="sb-user">
+        <div class="avatar gold" id="sbAvatar">?</div>
+        <div class="who"><b id="sbName">-</b><span id="sbRole">-</span></div>
+        <button id="btnLogout" title="Keluar"><svg class="ic" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg></button>
+      </div>
+    </aside>
+    <div class="scrim" id="scrim"></div>
+    <div class="main">
+      <header class="topbar">
+        <button class="icon-btn menu-btn" id="btnMenu" aria-label="Menu"><svg class="ic" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+        <div class="crumb" id="crumb"></div>
+        <div class="search">
+          <svg class="ic" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <input id="globalSearch" placeholder="Cari nama jemaah, no paspor, atau no registrasi..." autocomplete="off">
+          <div class="search-results hidden" id="searchResults"></div>
+        </div>
+        <span class="mode-pill" id="modePill">Mode: -</span>
+        <button class="icon-btn" id="btnTheme" title="Ganti tema"><svg class="ic" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+        <button class="icon-btn" id="btnBell" title="Notifikasi"><svg class="ic" viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 0 1-3.4 0"/></svg><span class="dot hidden" id="bellDot"></span></button>
+        <span id="gTopCta"></span>
+        <button class="avatar" id="topAvatar" style="border:0;cursor:pointer" title="Profil & password">?</button>
+      </header>
+      <main class="content" id="view"></main>
+    </div>
+  </section>
+
+  <div class="toasts" id="toasts"></div>
+  <div id="modalRoot"></div>
+
+  <!-- Urutan script penting: config → api → ui → halaman → app -->
+  <script src="js/config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/pages-operasional.js"></script>
+  <script src="js/pages-keuangan.js"></script>
+  <script src="js/pages-admin.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
