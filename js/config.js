@@ -4,7 +4,7 @@
 //    Ganti URL di bawah dengan URL Web App /exec dari Google Apps Script Anda
 //    (Deploy → New deployment → Web app → salin "Web app URL").
 // ============================================================================
-const GAS_URL = 'https://script.google.com/macros/s/AKfycbwDkeYikPxe9mJ3MwiYi-6gt_gec76qt5Ts3hNJkbq1-QAeoYcHFl_b_aWEdT8eSC8g/exec';
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbywxw9ymU_KigT2FTe2_6V14Y5-J1jDc0HYR7pSNcNTq2AAYIju7z3lYHphz-5q7a-jBQ/exec';
 
 const APP_CONFIG = {
   appName: 'SIMTRA Umroh',
